@@ -1,3 +1,3 @@
 # Tugas APAP
 ## Authors
-* **<Yudha Pradipta Ramadan>** - *<1706043424>* - *<B>*
+* **YUDHA PRADIPTA RAMADAN** - *1706043424* - *B*
