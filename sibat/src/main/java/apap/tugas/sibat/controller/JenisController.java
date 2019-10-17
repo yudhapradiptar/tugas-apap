@@ -46,4 +46,16 @@ public class JenisController {
         model.addAttribute("namaJenis", jenis.getNamaJenis());
         return "add-jenis";
     }
+
+    /*@RequestMapping("/restoran/viewall")
+    public String viewall(Model model){
+
+        List<JenisModel> listJenis = jenisService.getListJenis();
+
+        model.addAttribute("jenisList", listJenis);
+        listJenis.sort(Comparator.comparing(JenisModel::getNamaJenis));
+        model.addAttribute("titleNavbar", "View All Jenis");
+        // Return view template
+        return "viewall-restoran";
+    }*/
 }

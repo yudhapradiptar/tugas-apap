@@ -10,4 +10,5 @@ import java.util.Optional;
 @Repository
 public interface JenisDB extends JpaRepository<JenisModel, Long>{
     JenisModel findByIdJenis(Long idJenis);
+
 }
