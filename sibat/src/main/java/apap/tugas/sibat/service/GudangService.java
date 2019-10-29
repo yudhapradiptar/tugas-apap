@@ -11,4 +11,8 @@ public interface GudangService {
 
     // method untuk mendapatkan list obat
     List<GudangModel> getListGudang();
+
+    Optional<GudangModel> getGudangByIdGudang(Long idGudang);
+
+    boolean deleteGudang(GudangModel gudang);
 }

@@ -4,11 +4,11 @@ import java.util.List;
 import java.util.Optional;
 
 import apap.tugas.sibat.model.JenisModel;
+import apap.tugas.sibat.model.ObatModel;
 
 public interface JenisService {
-
-    void addJenis(JenisModel gudang);
-
     // method untuk mendapatkan list obat
     List<JenisModel> getListJenis();
+
+    List<Optional<ObatModel>> getListObatByIdJenis(Long idJenis);
 }

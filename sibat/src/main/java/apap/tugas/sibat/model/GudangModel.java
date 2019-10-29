@@ -15,7 +15,6 @@ import java.util.List;
 @Table(name="gudang")
 public class GudangModel implements Serializable{
     @Id
-    @Size(max = 20)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idGudang;
 
@@ -29,8 +28,8 @@ public class GudangModel implements Serializable{
     @Column(name="alamatGudang", nullable = false)
     private String alamatGudang;
 
-    @ManyToMany(mappedBy = "listGudang")
-    List<ObatModel> listObat;
+    @OneToMany(mappedBy = "gudang")
+    List<GudangObatModel> listGudangObat;
 
     public Long getIdGudang() {
         return idGudang;
@@ -56,11 +55,12 @@ public class GudangModel implements Serializable{
         this.alamatGudang = alamatGudang;
     }
 
-    public List<ObatModel> getListObat() {
-        return listObat;
+    public List<GudangObatModel> getListGudangObat() {
+        return listGudangObat;
     }
 
-    public void setListObat(List<ObatModel> listObat) {
-        this.listObat = listObat;
+    public void setListGudangObat(List<GudangObatModel> listGudangObat) {
+        this.listGudangObat = listGudangObat;
     }
+
 }

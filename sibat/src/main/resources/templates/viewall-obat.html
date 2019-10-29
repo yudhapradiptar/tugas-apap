@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymelaf.org">
+<head>
+    <title>View All Anggota</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<h2>Daftar Seluruh Obat</h2>
+<table>
+    <thead>
+    <tr>
+        <th>NO</th>
+        <th>KODE</th>
+        <th>NAMA</th>
+        <th>HARGA</th>
+        <th>ACTION</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="obat, iterationStatus : *{obatList}">
+        <td th:text="${iterationStatus.count}"></td>
+        <td th:text="${obat.kodeObat}"></td>
+        <td th:text="${obat.namaObat}"></td>
+        <td th:text="${obat.hargaObat}"></td>
+        <td>
+            <a th:href="@{/obat/ubah?id=}+${obat.idObat}" class="btn btn-primary">Ubah</a>
+            <a th:href="@{/obat/view?noReg=}+${obat.nomorRegistrasiObat}" class="btn btn-secondary">Lihat</a>
+            <button class="btn btn-danger" type="submit" name="deleteObat">Hapus</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<button class="btn btn-primary">
+    <a th:href="@{/obat/tambah}" style="color: white"> Tambah Obat</a>
+</button>
+</body>
+</body>
+</html>

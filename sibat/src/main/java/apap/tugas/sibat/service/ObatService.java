@@ -12,4 +12,14 @@ public interface ObatService {
 
     // method untuk mendapatkan list obat
     List<ObatModel> getListObat();
+
+    //method untuk mendapatkan obat berdasarkan nomor registrasi
+    Optional<ObatModel> getObatByNomorRegistrasiObat(String nomorRegistrasiObat);
+
+    ObatModel changeObat(ObatModel obatModel);
+
+    Optional<ObatModel> getObatByIdObat(Long idObat);
+
+    List<ObatModel> findAllObatByIdJenis(Long idJenis);
+
 }

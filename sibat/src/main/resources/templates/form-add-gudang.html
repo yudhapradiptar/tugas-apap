@@ -1,22 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymelaf.org">
 <head>
-    <title> Add Jenis </title>
+    <title> Add Gudang </title>
     <object th:include="fragments/fragment :: css" th:remove="tag"></object>
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
 <nav th:replace="fragments/fragment :: navbar"></nav>
-<h3> Tambah Jenis </h3>
-<form th:action="@{/jenis/add}" th:object="${jenis}" method="POST">
+<h3> Tambah Gudang </h3>
+<form th:action="@{/gudang/tambah/}" th:object="${gudang}" method="POST">
     Nama: <br>
-    <input type="text" name="namaJenis" />
+    <input type="text" name="namaGudang" />
     <br>
-    Deskripsi: <br>
-    <input type="text" name="deksripsiJenis" />
+    Alamat: <br>
+    <input type="text" name="alamatGudang" />
     <br>
     <button type="submit"> Submit </button>
 </form>
-
 </body>
 </html>
