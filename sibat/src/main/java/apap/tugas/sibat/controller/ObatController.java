@@ -144,7 +144,7 @@ public class ObatController {
         return "change-obat";
     }
 
-    @RequestMapping(value = "/obat/tambah", method=RequestMethod.POST, params= {"addRowSupplier"})
+    @RequestMapping(value = "/obat", method=RequestMethod.POST, params= {"addRowSupplier"})
     private String addRowSupplier(@ModelAttribute ObatModel obat, BindingResult Br, Model model) {
 
 //        if(obat.getListObatSupplier() == null){
@@ -157,7 +157,7 @@ public class ObatController {
         model.addAttribute("obat", obat);
         model.addAttribute("listSupplier", listSupplier);
         model.addAttribute("listJenis", listJenis);
-        return "form-add-pasien";
+        return "form-add-obat";
     }
 
     @RequestMapping(path = "/obat/filter", method = RequestMethod.GET)

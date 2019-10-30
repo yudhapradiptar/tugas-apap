@@ -10,19 +10,19 @@
 <h3> Tambah Obat </h3>
 <form th:action="@{/obat}" th:object="${obat}" method="POST">
     Nama: <br>
-    <input type="text" name="namaObat" />
+    <input type="text" name="namaObat"  th:field="*{namaObat}"/>
     <br>
     Nomor Registrasi: <br>
-    <input type="text" name="nomorRegistrasiObat" />
+    <input type="text" name="nomorRegistrasiObat" th:field="*{nomorRegistrasiObat}"/>
     <br>
     <!--Kode: <br>
     <input type="text" name="kodeObat" />
     <br>-->
     Tanggal Terbit: <br>
-    <input type="date" name="tanggalTerbitObat" />
+    <input type="date" name="tanggalTerbitObat" th:field="*{tanggalTerbitObat}"/>
     <br>
     Harga: <br>
-    <input type="text" name="hargaObat" />
+    <input type="text" name="hargaObat" th:field="*{hargaObat}"/>
     <br>
     Bentuk: <br>
     <select name="bentukObat" th:field="*{bentukObat}">
