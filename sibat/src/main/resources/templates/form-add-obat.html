@@ -41,12 +41,12 @@
     <div class="form-group">
         <label>Supplier: </label>
     <select name="supplierObat" th:each="obatSupplier, iterationStatus : ${obat.listObatSupplier}"
-            th:field="${obat.listObatSupplier[__${iterationStatus.index}__].supplier}" class="form-control" required>
+            th:field="${obat.listObatSupplier[__${iterationStatus.index}__].supplier.idSupplier}" class="form-control" required>
         <option th:each="supplier : ${listSupplier}"
                 th:value="${supplier.idSupplier}"
                 th:text="${supplier.namaSupplier}"></option>
     </select>
-        <button type="submit" name="addRowSupplier" class="btn btn-primary" style="=color: white">Tambah Supplier</button>
+        <button name="addRowSupplier" class="btn btn-primary" style="=color: white">Tambah Supplier</button>
     </div>
     <br>
     <button type="submit" name="submit"> Submit </button>

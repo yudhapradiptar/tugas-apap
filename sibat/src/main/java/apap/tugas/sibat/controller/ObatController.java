@@ -106,8 +106,8 @@ public class ObatController {
         return "form-add-obat";
     }
 
-    @RequestMapping(value = "/obat", method = RequestMethod.POST, params={"submit"})
-    public String addObatSubmit(@ModelAttribute ObatModel obat, Model model){
+    @RequestMapping(value = "/obat", method = RequestMethod.POST)
+    public String addObatSubmit(@ModelAttribute ObatModel obat, Model model, BindingResult result){
         for(ObatSupplierModel obatSupplier : obat.getListObatSupplier()){
             obatSupplier.setObat(obat);
         }
