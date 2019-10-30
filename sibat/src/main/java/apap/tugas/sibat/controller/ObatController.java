@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -90,17 +91,33 @@ public class ObatController {
     @RequestMapping(value = "/obat/tambah", method = RequestMethod.GET)
     public String addObatFormPage(Model model){
         ObatModel newObat = new ObatModel();
+
         List<JenisModel> listJenis = jenisService.getListJenis();
         List<SupplierModel> listSupplier = supplierService.getListSupplier();
+
+        ObatSupplierModel newObatSupplier = new ObatSupplierModel();
+        List<ObatSupplierModel> listObatSupplier = new ArrayList<>();
+        listObatSupplier.add(newObatSupplier);
+        newObat.setListObatSupplier(listObatSupplier);
+
         model.addAttribute("listJenis", listJenis);
         model.addAttribute("obat", newObat);
         model.addAttribute("listSupplier", listSupplier);
         return "form-add-obat";
     }
 
-    @RequestMapping(value = "/obat", method = RequestMethod.POST)
+    @RequestMapping(value = "/obat", method = RequestMethod.POST, params={"submit"})
     public String addObatSubmit(@ModelAttribute ObatModel obat, Model model){
+        for(ObatSupplierModel obatSupplier : obat.getListObatSupplier()){
+            obatSupplier.setObat(obat);
+        }
+        obatService.generateKodeObat(obat);
         obatService.addObat(obat);
+        for(ObatSupplierModel obatSupplier2 : obat.getListObatSupplier()){
+            obatSupplierService.addObatSupplier(obatSupplier2);
+        }
+        String kodeObat = obat.getKodeObat();
+        model.addAttribute("kodeObat", kodeObat);
         model.addAttribute("namaObat", obat.getNamaObat());
         return "add-obat";
     }
@@ -109,7 +126,11 @@ public class ObatController {
     public String changeObatFormPage(@RequestParam(value = "id") Long idObat, Model model) {
         //Mengambuk existing data restoran
         ObatModel existingObat = obatService.getObatByIdObat(idObat).get();
+
         List<JenisModel> listJenis = jenisService.getListJenis();
+        List<ObatSupplierModel> listObatSupplier = new ArrayList<>();
+        ObatSupplierModel newObatSupplier = new ObatSupplierModel();
+        listObatSupplier.add(newObatSupplier);
         model.addAttribute("obat", existingObat);
         model.addAttribute("listJenis", listJenis);
         return "form-change-obat";
@@ -123,30 +144,21 @@ public class ObatController {
         return "change-obat";
     }
 
-//    @RequestMapping(value = "/obat/tambah", params= {"addRowSupplier"}, method=RequestMethod.POST)
-//    private String addRow(@ModelAttribute ObatModel obat, Model model) {
-//
-//        List<ObatSupplierModel> listObatSupplier = obat.getListObatSupplier();
-//        List<SupplierModel> listSupplier = new ArrayList<SupplierModel>();
-//        for(ObatSupplierModel obatSupplier : listObatSupplier){
-//            if(obatSupplier.getObat().getIdObat()==obat.getIdObat()){
-//                listSupplier.add(obatSupplier.getSupplier());
-//            }
+    @RequestMapping(value = "/obat/tambah", method=RequestMethod.POST, params= {"addRowSupplier"})
+    private String addRowSupplier(@ModelAttribute ObatModel obat, BindingResult Br, Model model) {
+
+//        if(obat.getListObatSupplier() == null){
+//            obat.setListObatSupplier(new ArrayList<ObatSupplierModel>());
 //        }
-//        if (listSupplier.size()==0) {
-//            pasien.setListAsuransi(new ArrayList<>());
-//        }
-//
-//        EmergencyContactModel newEmergencyContactModel = new EmergencyContactModel();
-//
-//        pasien.getListAsuransi().add(new AsuransiModel());
-//        List<AsuransiModel> newAsuransiModel = pasienService.getAsuransiList();
-//
-//        model.addAttribute("obat", obat);
-//        model.addAttribute("emergencyContact", newEmergencyContactModel);
-//        model.addAttribute("asuransi", newAsuransiModel);
-//        return "form-add-pasien";
-//    }
+        obat.getListObatSupplier().add(new ObatSupplierModel());
+        List<SupplierModel> listSupplier = supplierService.getListSupplier();
+        List<JenisModel> listJenis = jenisService.getListJenis();
+
+        model.addAttribute("obat", obat);
+        model.addAttribute("listSupplier", listSupplier);
+        model.addAttribute("listJenis", listJenis);
+        return "form-add-pasien";
+    }
 
     @RequestMapping(path = "/obat/filter", method = RequestMethod.GET)
     public String viewGudang(

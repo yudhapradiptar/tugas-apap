@@ -15,9 +15,9 @@
     Nomor Registrasi: <br>
     <input type="text" name="nomorRegistrasiObat" />
     <br>
-    Kode: <br>
+    <!--Kode: <br>
     <input type="text" name="kodeObat" />
-    <br>
+    <br>-->
     Tanggal Terbit: <br>
     <input type="date" name="tanggalTerbitObat" />
     <br>
@@ -38,15 +38,18 @@
                 th:text="${jenis.namaJenis}"></option>
     </select>
     <br>
-    Supplier: <br>
-    <select name="supplierObat">
+    <div class="form-group">
+        <label>Supplier: </label>
+    <select name="supplierObat" th:each="obatSupplier, iterationStatus : ${obat.listObatSupplier}"
+            th:field="${obat.listObatSupplier[__${iterationStatus.index}__].supplier}" class="form-control" required>
         <option th:each="supplier : ${listSupplier}"
                 th:value="${supplier.idSupplier}"
                 th:text="${supplier.namaSupplier}"></option>
     </select>
+        <button type="submit" name="addRowSupplier" class="btn btn-primary" style="=color: white">Tambah Supplier</button>
+    </div>
     <br>
-    <!--<button type="submit" name="addRowSupplier" class="btn btn-primary" style="=color: white">Tambah Supplier</button>-->
-    <button type="submit"> Submit </button>
+    <button type="submit" name="submit"> Submit </button>
 </form>
 <br>
 

@@ -15,7 +15,6 @@ import java.util.List;
 @Table(name="obat_supplier")
 public class ObatSupplierModel {
     @Id
-    @Size(max = 20)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idObatSupplier;
 

@@ -8,19 +8,19 @@
 <body>
 <nav th:replace="fragments/fragment :: navbar"></nav>
 <h2>Daftar Seluruh Obat</h2>
-<table>
-    <thead>
+<table class="table">
+    <thead class="thead-dark">
     <tr>
-        <th>NO</th>
-        <th>KODE</th>
-        <th>NAMA</th>
-        <th>HARGA</th>
-        <th>ACTION</th>
+        <th scope="col">NO</th>
+        <th scope="col">KODE</th>
+        <th scope="col">NAMA</th>
+        <th scope="col">HARGA</th>
+        <th scope="col">ACTION</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="obat, iterationStatus : *{obatList}">
-        <td th:text="${iterationStatus.count}"></td>
+        <th scope="row" th:text="${iterationStatus.count}"></th>
         <td th:text="${obat.kodeObat}"></td>
         <td th:text="${obat.namaObat}"></td>
         <td th:text="${obat.hargaObat}"></td>

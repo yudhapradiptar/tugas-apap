@@ -11,21 +11,21 @@
     <h2>Detail Gudang</h2>
     <form th:action="@{/obat/filter}" method="GET">
         <select name="idGudang">
-            <option>-----Plih Gudang-----</option>
+            <option value="" >-----List Gudang-----</option>
             <option th:each="gudang : ${listGudang}"
                     th:value="${gudang.idGudang}"
                     th:text="${gudang.namaGudang}"></option>
         </select>
         <br>
         <select name="idSupplier">
-            <option>-----Pilih Supplier-----</option>
+            <option value="">-----Pilih Supplier-----</option>
             <option th:each="supplier : ${listSupplier}"
                     th:value="${supplier.idSupplier}"
                     th:text="${supplier.namaSupplier}"></option>
         </select>
         <br>
         <select name="idJenis">
-            <option>-----Pilih Jenis-----</option>
+            <option value="">-----Pilih Jenis-----</option>
             <option th:each="jenis : ${listJenis}"
                     th:value="${jenis.idJenis}"
                     th:text="${jenis.namaJenis}"></option>
@@ -34,21 +34,23 @@
         <button type="submit"> Submit </button>
     </form>
     <br>
-    <table>
-        <thead>
+    <table class="table">
+        <thead class="thead-dark">
         <tr>
-            <th>NO</th>
-            <th>KODE</th>
-            <th>NAMA</th>
-            <th>HARGA</th>
+            <th scope="col">NO</th>
+            <th scope="col">KODE</th>
+            <th scope="col">NAMA</th>
+            <th scope="col">NOMOR REGISTRASI</th>
+            <th scope="col">TANGGAL TERBIT</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="obat, iterationStatus : *{listObat}">
-            <td th:text="${iterationStatus.count}"></td>
+            <th scope="row" th:text="${iterationStatus.count}"></th>
             <td th:text="${obat.kodeObat}"></td>
             <td th:text="${obat.namaObat}"></td>
-            <td th:text="${obat.hargaObat}"></td>
+            <td th:text="${obat.nomorRegistrasiObat}"></td>
+            <td th:text="${obat.tanggalTerbitObat}"></td>
         </tr>
         </tbody>
     </table>

@@ -3,6 +3,7 @@ package apap.tugas.sibat.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -45,6 +46,7 @@ public class ObatModel implements Serializable{
 
     @NotNull
     @Column(name="tanggalTerbitObat", nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date tanggalTerbitObat;
 
     @OneToMany(mappedBy = "obat")

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import apap.tugas.sibat.model.ObatModel;
+import apap.tugas.sibat.model.ObatSupplierModel;
 
 public interface ObatService {
 
@@ -21,5 +22,7 @@ public interface ObatService {
     Optional<ObatModel> getObatByIdObat(Long idObat);
 
     List<ObatModel> findAllObatByIdJenis(Long idJenis);
+
+    ObatModel generateKodeObat(ObatModel obat);
 
 }
