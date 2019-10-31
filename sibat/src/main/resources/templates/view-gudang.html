@@ -22,7 +22,8 @@
                 <dd class="col-sm-9" th:text="'Jumlah Obat: ' + ${jumlahObat}"></dd>
             </dl>
             <form th:action="@{/gudang/tambah-obat}" method="POST">
-                <select name="idObat" class="form-control col-sm-2">
+                <select name="idObat" class="form-control col-sm-2" required="true">
+                    <option value="" hidden="">-----Pilih Obat-----</option>
                     <option th:each="obat : ${listObat}"
                             th:value="${obat.idObat}"
                             th:text="${obat.namaObat}"></option>
