@@ -2,13 +2,12 @@
 <html xmlns:th="http://www.thymelaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Add Gudang</title>
     <object th:include="fragments/fragment :: css" th:remove="tag"></object>
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
 <nav th:replace="fragments/fragment :: navbar"></nav>
-<h1>Obat berhasil di ADD</h1>
-<h2 th:text="'Jenis dengan nama ' + ${namaJenis} + ' berhasil ditambahkan.'"></h2>
+<h2 th:text="'Gudang dengan nama ' + ${namaGudang} + ' berhasil ditambahkan.'"></h2>
 </body>
 </html>

@@ -9,5 +9,5 @@ import java.util.Optional;
 
 @Repository
 public interface GudangDB extends JpaRepository<GudangModel, Long>{
-    GudangModel findByIdGudang(Long idGudang);
+    Optional<GudangModel> findByIdGudang(Long idGudang);
 }

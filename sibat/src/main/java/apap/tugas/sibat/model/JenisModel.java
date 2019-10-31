@@ -62,4 +62,5 @@ public class JenisModel implements Serializable{
     public void setDeskripsiJenis(String deskripsiJenis) {
         this.deskripsiJenis = deskripsiJenis;
     }
+
 }

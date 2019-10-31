@@ -3,6 +3,7 @@ package apap.tugas.sibat.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -16,7 +17,6 @@ import java.util.List;
 @Table(name= "obat")
 public class ObatModel implements Serializable{
     @Id
-    @Size(max = 20)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idObat;
 
@@ -46,34 +46,17 @@ public class ObatModel implements Serializable{
 
     @NotNull
     @Column(name="tanggalTerbitObat", nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date tanggalTerbitObat;
 
-    @ManyToMany
-    @JoinTable(
-            name = "listGudang",
-            joinColumns = @JoinColumn(name = "idGudang"),
-            inverseJoinColumns = @JoinColumn(name = "idObat")
-    )
-    List<GudangModel> listGudang;
+    @OneToMany(mappedBy = "obat")
+    List<GudangObatModel> listGudangObat;
 
-    @ManyToMany
-    @JoinTable(
-            name = "listSupplier",
-            joinColumns = @JoinColumn(name = "idSupplier"),
-            inverseJoinColumns = @JoinColumn(name = "idObat")
-    )
-    List<SupplierModel> listSupplier;
-
-    public JenisModel getJenis() {
-        return jenis;
-    }
-
-    public void setJenis(JenisModel jenis) {
-        this.jenis = jenis;
-    }
+    @OneToMany(mappedBy = "obat")
+    List<ObatSupplierModel> listObatSupplier;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "jenisId", referencedColumnName = "idJenis", nullable = false)
+    @JoinColumn(name = "jenisId", referencedColumnName = "idJenis")
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private JenisModel jenis;
@@ -142,19 +125,27 @@ public class ObatModel implements Serializable{
         this.jenis = jenis;
     }
 
-    public List<GudangModel> getListGudang() {
-        return listGudang;
+    public List<GudangObatModel> getListGudangObat() {
+        return listGudangObat;
     }
 
-    public void setListGudang(List<GudangModel> listGudang) {
-        this.listGudang = listGudang;
+    public void setListGudangObat(List<GudangObatModel> listGudangObat) {
+        this.listGudangObat = listGudangObat;
     }
 
-    public List<SupplierModel> getListSupplier() {
-        return listSupplier;
+    public List<ObatSupplierModel> getListObatSupplier() {
+        return listObatSupplier;
     }
 
-    public void setListSupplier(List<SupplierModel> listSupplier) {
-        this.listSupplier = listSupplier;
+    public void setListObatSupplier(List<ObatSupplierModel> listObatSupplier) {
+        this.listObatSupplier = listObatSupplier;
+    }
+
+    public JenisModel getJenis() {
+        return jenis;
+    }
+
+    public void setJenis(JenisModel jenis) {
+        this.jenis = jenis;
     }
 }

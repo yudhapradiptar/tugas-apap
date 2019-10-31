@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymelaf.org">
+<head>
+    <title>View Gudang</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container">
+    <div class="card">
+        <div class="card-header text-center">
+            <font size="10">Detail Gudang</font>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">Nama: </dt>
+                <dd class="col-sm-9" th:text="'Nama: ' + ${gudang.namaGudang}"></dd>
+                <dt class="col-sm-3">Alamat: </dt>
+                <dd class="col-sm-9" th:text="'Alamat: ' + ${gudang.alamatGudang}"></dd>
+                <dt class="col-sm-3">Jumlah Obat: </dt>
+                <dd class="col-sm-9" th:text="'Jumlah Obat: ' + ${jumlahObat}"></dd>
+            </dl>
+            <form th:action="@{/gudang/tambah-obat}" method="POST">
+                <select name="idObat" class="form-control col-sm-2" required="true">
+                    <option value="" hidden="">-----Pilih Obat-----</option>
+                    <option th:each="obat : ${listObat}"
+                            th:value="${obat.idObat}"
+                            th:text="${obat.namaObat}"></option>
+                </select>
+                <input type="hidden" th:field="*{gudang.idGudang}" />
+                <br>
+                <button class="btn btn-primary" style="color: white" type="submit" name="submit"> Submit </button>
+            </form>
+        </div>
+    </div>
+    <br>
+    <div class="card align-items-center text-center">
+        <div class="card-header" style="background:#ffffff;">
+            <font size="10">Daftar Obat</font>
+        </div>
+    </div>
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">NO</th>
+            <th scope="col">KODE</th>
+            <th scope="col">NAMA</th>
+            <th scope="col">HARGA</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="obatDiGudang, iterationStatus : *{listObatDiGudang}">
+            <th scope="row" th:text="${iterationStatus.count}"></th>
+            <td th:text="${obatDiGudang.kodeObat}"></td>
+            <td th:text="${obatDiGudang.namaObat}"></td>
+            <td th:text="${obatDiGudang.hargaObat}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

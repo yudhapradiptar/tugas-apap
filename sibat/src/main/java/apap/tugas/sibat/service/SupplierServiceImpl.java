@@ -10,6 +10,8 @@ import javax.validation.constraints.Null;
 import java.util.List;
 import java.util.Optional;
 
+@Service
+@Transactional
 public class SupplierServiceImpl implements SupplierService{
     @Autowired
     private SupplierDB supplierDb;

@@ -1,6 +1,7 @@
 package apap.tugas.sibat.service;
 
 import apap.tugas.sibat.model.JenisModel;
+import apap.tugas.sibat.model.ObatModel;
 import apap.tugas.sibat.repository.JenisDB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,9 +18,8 @@ public class JenisServiceImpl implements JenisService{
     private JenisDB jenisDb;
 
     @Override
-    public void addJenis(JenisModel jenis) { jenisDb.save(jenis);}
+    public List<JenisModel> getListJenis() { return jenisDb.findAll();}
 
     @Override
-    public List<JenisModel> getListJenis() { return jenisDb.findAll();}
-    
+    public List<Optional<ObatModel>> getListObatByIdJenis(Long idJenis) { return jenisDb.findListObatByIdJenis(idJenis);}
 }

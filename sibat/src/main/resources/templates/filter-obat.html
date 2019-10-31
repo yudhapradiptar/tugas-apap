@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymelaf.org">
+<head>
+    <title>Filter Obat</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container">
+    <div class="card">
+        <div class="card-header" style="background:#ffffff;">
+            <font size="5">Cari Obat</font>
+        </div>
+        <div class="card-body">
+            <form th:action="@{/obat/filter}" method="GET">
+                <div class="form-group-row">
+                    <label class="col-sm-2 col-form-label">Gudang:</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" name="idGudang">
+                            <option value="" >-----Pilih Gudang-----</option>
+                            <option th:each="gudang : ${listGudang}"
+                                    th:value="${gudang.idGudang}"
+                                    th:text="${gudang.namaGudang}"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group-row">
+                    <label class="col-sm-2 col-form-label">Supplier:</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" name="idSupplier">
+                            <option value="">-----Pilih Supplier-----</option>
+                            <option th:each="supplier : ${listSupplier}"
+                                    th:value="${supplier.idSupplier}"
+                                    th:text="${supplier.namaSupplier}"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group-row">
+                    <label class="col-sm-2 col-form-label">Jenis:</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" name="idJenis">
+                            <option value="">-----Pilih Jenis-----</option>
+                            <option th:each="jenis : ${listJenis}"
+                                    th:value="${jenis.idJenis}"
+                                    th:text="${jenis.namaJenis}"></option>
+                        </select>
+                    </div>
+                </div><br>
+                <div class="form-group-row">
+                    <div class="col-sm-10">
+                        <button class="btn btn-primary" style="color: white" type="submit" name="submit"> Submit </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br>
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">NO</th>
+            <th scope="col">KODE</th>
+            <th scope="col">NAMA</th>
+            <th scope="col">NOMOR REGISTRASI</th>
+            <th scope="col">TANGGAL TERBIT</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="obat, iterationStatus : *{listObat}">
+            <th scope="row" th:text="${iterationStatus.count}"></th>
+            <td th:text="${obat.kodeObat}"></td>
+            <td th:text="${obat.namaObat}"></td>
+            <td th:text="${obat.nomorRegistrasiObat}"></td>
+            <td th:text="${obat.tanggalTerbitObat}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

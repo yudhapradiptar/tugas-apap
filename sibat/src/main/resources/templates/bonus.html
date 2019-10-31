@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymelaf.org">
+<head>
+    <title>View All Anggota</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container">
+    <div class="card align-items-center text-center">
+        <div class="card-header" style="background:#ffffff;">
+            <font size="10">Daftar Obat</font>
+        </div>
+    </div>
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">NO</th>
+            <th scope="col">KODE</th>
+            <th scope="col">NAMA</th>
+            <th scope="col">JUMLAH SUPPLIER</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="obat, iterationStatus : *{obatList}">
+            <th scope="row" th:text="${iterationStatus.count}"></th>
+            <td th:text="${obat.kodeObat}"></td>
+            <td th:text="${obat.namaObat}"></td>
+            <td th:text="${obat.listObatSupplier.size()}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <button class="btn btn-primary">
+        <a th:href="@{/obat/tambah}" style="color: white"> Tambah Obat</a>
+    </button>
+</div>
+</body>
+</body>
+</html>

@@ -10,4 +10,6 @@ import java.util.Optional;
 @Repository
 public interface SupplierDB extends JpaRepository<SupplierModel, Long>{
     SupplierModel findByIdSupplier(Long idSupplier);
+
+
 }

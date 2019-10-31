@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymelaf.org">
+<head>
+    <title> Add Obat </title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container">
+    <div class="card">
+        <div class="card-header" style="background:#ffffff;">
+            <font size="10">Tambah Obat</font>
+        </div>
+        <div class="card-body">
+            <form th:action="@{/obat}" th:object="${obat}" method="POST">
+                <div class="form-group-row">
+                    <label class="col-sm-2 col-form-label">Nama: </label>
+                    <div class="col-sm-10">
+                        <input type="text" name="namaObat"  class="form-control" th:field="*{namaObat}" required="true" placeholder="Nama Obat"/>
+                    </div>
+                </div>
+                <div class="form-group-row">
+                    <label class="col-sm-2 col-form-label">Nomor Registrasi: </label>
+                    <div class="col-sm-10">
+                        <input type="text" name="nomorRegistrasiObat" th:field="*{nomorRegistrasiObat}" class="form-control" required="true" placeholder="Nomor Registrasi Obat"/>
+                    </div>
+                </div>
+                <div class="form-group-row">
+                    <label class="col-sm-2 col-form-label">Tanggal Terbit: </label>
+                    <div class="col-sm-10">
+                        <input type="date" name="tanggalTerbitObat" th:field="*{tanggalTerbitObat}" class="form-control" required="true" placeholder="Tanggal Terbit Obat"/>
+                    </div>
+                </div>
+                <div class="form-group-row">
+                    <label class="col-sm-2 col-form-label">Harga: </label>
+                    <div class="col-sm-10">
+                        <input type="text" name="hargaObat" th:field="*{hargaObat}" class="form-control" required="true" placeholder="Harga Obat"/>
+                    </div>
+                </div>
+                <div class="form-group-row">
+                    <label class="col-sm-2 col-form-label">Bentuk: </label>
+                    <div class="col-sm-10">
+                        <select class="form-control" name="bentukObat" th:field="*{bentukObat}" required="true">
+                            <option value="" hidden="">-----Pilih Bentuk-----</option>
+                            <option th:value="Cairan" th:text="Cairan"></option>
+                            <option th:value="Kapsul" th:text="Kapsul"></option>
+                            <option th:value="Tablet" th:text="Tablet"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group-row">
+                    <label class="col-sm-2 col-form-label">Jenis:</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" name="jenis" required="true">
+                            <option value="" hidden="">-----Pilih Jenis-----</option>
+                            <option th:each="jenis : ${listJenis}"
+                                    th:value="${jenis.idJenis}"
+                                    th:text="${jenis.namaJenis}"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group-row">
+                    <label class="col-sm-2 col-form-label">Supplier: </label>
+                    <div class="col-sm-10">
+                        <select name="supplierObat" th:each="obatSupplier, iterationStatus : ${obat.listObatSupplier}"
+                                th:field="${obat.listObatSupplier[__${iterationStatus.index}__].supplier.idSupplier}" class="form-control" required="true">
+                            <option value="" hidden="">-----Pilih Supplier-----</option>
+                            <option th:each="supplier : ${listSupplier}"
+                                    th:value="${supplier.idSupplier}"
+                                    th:text="${supplier.namaSupplier}"></option>
+                        </select>
+                    </div>
+                </div>
+                    <br>
+                    <div class="form-group-row">
+                        <div class="col-sm-10">
+                            <button name="addRowSupplier" class="btn btn-secondary">Tambah Supplier</button>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group-row">
+                        <div class="col-sm-10">
+                            <button class="btn btn-primary" style="color: white" type="submit" name="submit"> Submit </button>
+                        </div>
+                    </div>
+            </form>
+        </div>
+    </div>
+    </div>
+</div>
+</body>
+</html>

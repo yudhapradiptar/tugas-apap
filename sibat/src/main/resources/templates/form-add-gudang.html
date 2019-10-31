@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymelaf.org">
+<head>
+    <title> Add Gudang </title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container">
+    <div class="card">
+        <div class="card-header" style="background:#ffffff;">
+            <font size="10">Tambah Gudang</font>
+        </div>
+    </div>
+    <div class="card-body">
+        <form th:action="@{/gudang/tambah/}" th:object="${gudang}" method="POST">
+            <div class="form-group-row">
+                <label class="col-sm-2 col-form-label"> Nama: </label>
+                <div class="col-sm-10">
+                    <input type="text" name="namaGudang"  class="form-control" th:field="*{namaGudang}" required="true" placeholder="Nama Gudang"/>
+                </div>
+            </div>
+            <div class="form-group-row">
+                <label class="col-sm-2 col-form-label"> Alamat: </label>
+                <div class="col-sm-10">
+                    <input type="text" name="alamatGudang"  class="form-control" th:field="*{alamatGudang}" required="true" placeholder="Alamat Gudang"/>
+                </div>
+            </div>
+            <br>
+            <button class="btn btn-primary" style="color: white" type="submit" name="submit"> Submit </button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

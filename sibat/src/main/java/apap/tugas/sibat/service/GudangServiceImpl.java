@@ -10,6 +10,8 @@ import javax.validation.constraints.Null;
 import java.util.List;
 import java.util.Optional;
 
+@Service
+@Transactional
 public class GudangServiceImpl implements GudangService{
     @Autowired
     private GudangDB gudangDb;
@@ -19,5 +21,17 @@ public class GudangServiceImpl implements GudangService{
 
     @Override
     public List<GudangModel> getListGudang() { return gudangDb.findAll();}
-    
+
+    @Override
+    public Optional<GudangModel> getGudangByIdGudang(Long idGudang) {return gudangDb.findByIdGudang(idGudang);}
+
+    @Override
+    public boolean deleteGudang(GudangModel gudang){
+        GudangModel gudangDiHapus = gudangDb.findByIdGudang(gudang.getIdGudang()).get();
+        if(gudangDiHapus.getListGudangObat().size()<1){
+            gudangDb.delete(gudangDiHapus);
+            return true;
+        } else{return false;}
+    }
+
 }

@@ -34,8 +34,8 @@ public class SupplierModel implements Serializable{
     @Column(name="nomorTeleponSupplier", nullable = false)
     private Long nomorTeleponSupplier;
 
-    @ManyToMany(mappedBy = "listSupplier")
-    List<ObatModel> listObat;
+    @OneToMany(mappedBy = "supplier")
+    List<ObatSupplierModel> listObatSupplier;
 
     public Long getIdSupplier() {
         return idSupplier;
@@ -69,11 +69,11 @@ public class SupplierModel implements Serializable{
         this.nomorTeleponSupplier = nomorTeleponSupplier;
     }
 
-    public List<ObatModel> getListObat() {
-        return listObat;
+    public List<ObatSupplierModel> getListObatSupplier() {
+        return listObatSupplier;
     }
 
-    public void setListObat(List<ObatModel> listObat) {
-        this.listObat = listObat;
+    public void setListObatSupplier(List<ObatSupplierModel> listObatSupplier) {
+        this.listObatSupplier = listObatSupplier;
     }
 }
