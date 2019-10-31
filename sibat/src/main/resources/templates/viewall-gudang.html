@@ -1,38 +1,44 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymelaf.org">
 <head>
-    <title>View All Anggota</title>
+    <title>View All Gudang</title>
     <object th:include="fragments/fragment :: css" th:remove="tag"></object>
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
 <nav th:replace="fragments/fragment :: navbar"></nav>
-<h2>Daftar Seluruh Gudang</h2>
-<table>
-    <thead>
-    <tr>
-        <th>NO</th>
-        <th>NAMA</th>
-        <th>ALAMAT</th>
-        <th>ACTION</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="gudang, iterationStatus : *{gudangList}">
-        <td th:text="${iterationStatus.count}"></td>
-        <td th:text="${gudang.namaGudang}"></td>
-        <td th:text="${gudang.alamatGudang}"></td>
-        <td>
-            <button class="btn btn-primary" type="submit" name="changeObat">Ubah</button>
-            <a th:href="@{/gudang/view?idGudang=}+${gudang.idGudang}" class="btn btn-secondary">Lihat</a>
-            <a th:href="@{/gudang/hapus/}+${gudang.idGudang}" class="btn btn-danger">Delete</a>
-        </td>
-    </tr>
-    </tbody>
-</table>
-<button class="btn btn-primary">
-    <a th:href="@{/gudang/tambah}" style="color: white"> Tambah Gudang</a>
-</button>
-</body>
+<div class="container">
+    <div class="card align-items-center text-center">
+        <div class="card-header" style="background:#ffffff;">
+            <font size="10">Daftar Gudang</font>
+        </div>
+    </div>
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">NO</th>
+            <th scope="col">NAMA</th>
+            <th scope="col">ALAMAT</th>
+            <th scope="col">ACTION</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="gudang, iterationStatus : *{gudangList}">
+            <td scope="row" th:text="${iterationStatus.count}"></td>
+            <td th:text="${gudang.namaGudang}"></td>
+            <td th:text="${gudang.alamatGudang}"></td>
+            <td>
+                <button class="btn btn-primary" type="submit" name="changeObat">Ubah</button>
+                <a th:href="@{/gudang/view?idGudang=}+${gudang.idGudang}" class="btn btn-secondary">Lihat</a>
+                <a th:href="@{/gudang/hapus/}+${gudang.idGudang}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <button class="btn btn-primary">
+        <a th:href="@{/gudang/tambah}" style="color: white"> Tambah Gudang</a>
+    </button>
+</div>
 </body>
 </html>

@@ -13,4 +13,5 @@ import java.util.Optional;
 @Repository
 public interface ObatSupplierDB extends JpaRepository<ObatSupplierModel, Long>{
     List<ObatSupplierModel> findBySupplierIdSupplier(Long idSupplier);
+    List<ObatSupplierModel> findByObatIdObat(Long idObat);
 }

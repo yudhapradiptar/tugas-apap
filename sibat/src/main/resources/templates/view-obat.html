@@ -7,32 +7,40 @@
 </head>
 <body>
 <nav th:replace="fragments/fragment :: navbar"></nav>
-<div class="container-fluid">
-    <h2>Detail Data Obat</h2>
-    <br>
-    <dl class="row">
-        <dt class="col-sm-3">Kode:</dt>
-        <dd class="col-sm-9" th:text="${obat.kodeObat}"></dd>
-        <dt class="col-sm-3">Nama:</dt>
-        <dd class="col-sm-9" th:text="${obat.nomorRegistrasiObat}"></dd>
-        <dt class="col-sm-3">Bentuk:</dt>
-        <dd class="col-sm-9" th:text="${obat.bentukObat}"></dd>
-        <dt class="col-sm-3">Tanggal Terbut:</dt>
-        <dd class="col-sm-9" th:text="${obat.tanggalTerbitObat}"></dd>
-        <dt class="col-sm-3">Harga:</dt>
-        <dd class="col-sm-9" th:text="${obat.hargaObat}"></dd>
-        <dt class="col-sm-3">Jenis:</dt>
-        <dd class="col-sm-9" th:text="${obat.jenisObat.namaJenis}"></dd>
-        <dt class="col-sm-3">Gudang:</dt>
-        <dd class="col-sm-9" th:each="gudang: *{listGudang}">
-            <p th:text="${gudang.namaGudang}"></p>
-        </dd>
-        <dt class="col-sm-3">Supplier:</dt>
-        <dd class="col-sm-9" th:each="supplier: *{listSupplier}">
-            <p th:text="${supplier.namaSupplier}"></p>
-        </dd>
-
-    </dl>
+<div class="container">
+    <div class="card">
+        <div class="card-header text-center">
+            <font size="10">Detail Data Obat</font>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">Kode:</dt>
+                <dd class="col-sm-9" th:text="${obat.kodeObat}"></dd>
+                <dt class="col-sm-3">Nama:</dt>
+                <dd class="col-sm-9" th:text="${obat.nomorRegistrasiObat}"></dd>
+                <dt class="col-sm-3">Bentuk:</dt>
+                <dd class="col-sm-9" th:text="${obat.bentukObat}"></dd>
+                <dt class="col-sm-3">Tanggal Terbut:</dt>
+                <dd class="col-sm-9" th:text="${obat.tanggalTerbitObat}"></dd>
+                <dt class="col-sm-3">Harga:</dt>
+                <dd class="col-sm-9" th:text="${obat.hargaObat}"></dd>
+                <dt class="col-sm-3">Jenis:</dt>
+                <dd class="col-sm-9" th:text="${obat.jenisObat.namaJenis}"></dd>
+                <dt class="col-sm-3">Gudang:</dt>
+                <dd class="col-sm-9">
+                    <div th:each="gudang: *{listGudang}">
+                        <p th:text="${gudang.namaGudang}"></p>
+                    </div>
+                </dd>
+                <dt class="col-sm-3">Supplier:</dt>
+                <dd class="col-sm-9">
+                    <div th:each="supplier: *{listSupplier}">
+                        <p th:text="${supplier.namaSupplier}"></p>
+                    </div>
+                </dd>
+            </dl>
+        </div>
+    </div>
 </div>
 </body>
 </html>

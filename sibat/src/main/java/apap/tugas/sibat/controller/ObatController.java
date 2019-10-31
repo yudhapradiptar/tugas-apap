@@ -108,18 +108,23 @@ public class ObatController {
 
     @RequestMapping(value = "/obat", method = RequestMethod.POST)
     public String addObatSubmit(@ModelAttribute ObatModel obat, Model model, BindingResult result){
-        for(ObatSupplierModel obatSupplier : obat.getListObatSupplier()){
-            obatSupplier.setObat(obat);
+        try {
+            for (ObatSupplierModel obatSupplier : obat.getListObatSupplier()) {
+                obatSupplier.setObat(obat);
+            }
+            obatService.generateKodeObat(obat);
+            obatService.addObat(obat);
+            for (ObatSupplierModel obatSupplier2 : obat.getListObatSupplier()) {
+                obatSupplierService.addObatSupplier(obatSupplier2);
+            }
+            String kodeObat = obat.getKodeObat();
+            model.addAttribute("kodeObat", obat.getKodeObat());
+            model.addAttribute("namaObat", obat.getNamaObat());
+            return "add-obat";
+        } catch (NullPointerException e){
+            return "error-add-obat";
         }
-        obatService.generateKodeObat(obat);
-        obatService.addObat(obat);
-        for(ObatSupplierModel obatSupplier2 : obat.getListObatSupplier()){
-            obatSupplierService.addObatSupplier(obatSupplier2);
-        }
-        String kodeObat = obat.getKodeObat();
-        model.addAttribute("kodeObat", kodeObat);
-        model.addAttribute("namaObat", obat.getNamaObat());
-        return "add-obat";
+
     }
 
     @RequestMapping(value="obat/ubah", method = RequestMethod.GET)
@@ -258,6 +263,30 @@ public class ObatController {
 
         return "filter-obat";
 
+    }
+
+    @RequestMapping("/obat/bonus")
+    public String bonus(Model model){
+
+        // Mengambil semua objek ObatModel yang ada
+        List<ObatModel> listObat = obatService.getListObat();
+        List<Long> listOfIdObat = new ArrayList<>();
+
+        for(ObatModel obat : listObat){
+            listOfIdObat.add(obat.getIdObat());
+        }
+
+        List<String> listSizeSupplier = new ArrayList<>();
+
+        for(Long idObat : listOfIdObat){
+            listSizeSupplier.add(Integer.toString(obatSupplierService.findAllObatSupplierByIdObat(idObat).size()));
+        }
+
+        // Add model restoran ke "resto" untuk dirender
+        model.addAttribute("obatList", listObat);
+        model.addAttribute("listSizeSupplier", listSizeSupplier);
+        // Return view template
+        return "viewall-obat";
     }
 
 }

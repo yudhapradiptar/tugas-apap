@@ -16,4 +16,6 @@ public interface ObatSupplierService {
     List<ObatSupplierModel> findAllObatSupplierByIdSupplier(Long idSupplier);
 
     void addObatSupplier(ObatSupplierModel obatSupplier);
+
+    List<ObatSupplierModel> findAllObatSupplierByIdObat(Long idObat);
 }

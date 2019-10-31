@@ -7,20 +7,32 @@
 </head>
 <body>
 <nav th:replace="fragments/fragment :: navbar"></nav>
-<div class="container-fluid">
-    <h2>Lihat Daftar Obat yang Sudah Expired</h2>
-    <br>
-    <h3>Pilih Gudang</h3>
-    <br>
-    <form th:action="@{/gudang/expired-obat}" method="GET">
-        <select name="idGudang">
-            <option th:each="gudang : ${listGudang}"
-                    th:value="${gudang.idGudang}"
-                    th:text="${gudang.namaGudang}"></option>
-        </select>
-        <button type="submit"> Submit </button>
-    </form>
-    <br>
+<div class="container">
+    <div class="card">
+        <div class="card-header" style="background:#ffffff;">
+            <font size="10">Lihat Daftar Obat yang Sudah Expired di Suatu Gudang</font>
+        </div>
+        <div class="card-body">
+            <form th:action="@{/gudang/expired-obat}" method="GET">
+                <div class="form-group-row">
+                    <label class="col-sm-2 col-form-label">Pilih Gudang </label>
+                    <div class="col-sm-10">
+                        <select name="idGudang" class="form-control">
+                            <option th:each="gudang : ${listGudang}"
+                                    th:value="${gudang.idGudang}"
+                                    th:text="${gudang.namaGudang}"></option>
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <div class="form-group-row">
+                    <div class="col-sm-10">
+                        <button class="btn btn-primary" style="color: white" type="submit" name="submit"> Submit </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 </body>
 </html>

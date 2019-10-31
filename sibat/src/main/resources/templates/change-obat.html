@@ -8,7 +8,6 @@
 </head>
 <body>
 <nav th:replace="fragments/fragment :: navbar"></nav>
-<h1>Obat berhasil di Ubah</h1>
-<h2 th:text="'Obat dengan nama ' + ${obat.namaObat} + ' dan kode obat ' + ${obat.kodeObat} + ' berhasil ditambahkan.'"></h2>
+<h2 th:text="'Obat ' + ${obat.namaObat} + ' dengan kode ' + ${obat.kodeObat} + ' berhasil diubah.'"></h2>
 </body>
 </html>

@@ -7,6 +7,6 @@
 </head>
 <body>
 <nav th:replace="fragments/fragment :: navbar"></nav>
-<h2>GUDANG GAGAL DIHAPUS</h2>
+<h2 th:text="'Gudang  ' + ${namaGudang} + ' gagal dihapus.'"></h2>
 </body>
 </html>

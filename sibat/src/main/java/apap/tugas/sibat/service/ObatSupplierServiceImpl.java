@@ -28,6 +28,11 @@ public class ObatSupplierServiceImpl implements ObatSupplierService{
     }
 
     @Override
+    public List<ObatSupplierModel> findAllObatSupplierByIdObat(Long idObat){
+        return obatSupplierDb.findByObatIdObat(idObat);
+    }
+
+    @Override
     public void addObatSupplier(ObatSupplierModel obatSupplier) { obatSupplierDb.save(obatSupplier);}
     //@Override
     //public List<ObatModel> getListObatByIdSupplier(Long idSupplier) { return obatSupplierDb.findListObatByIdSupplier(idSupplier);}

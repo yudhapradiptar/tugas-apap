@@ -7,34 +7,40 @@
 </head>
 <body>
 <nav th:replace="fragments/fragment :: navbar"></nav>
-<h2>Daftar Seluruh Obat</h2>
-<table class="table">
-    <thead class="thead-dark">
-    <tr>
-        <th scope="col">NO</th>
-        <th scope="col">KODE</th>
-        <th scope="col">NAMA</th>
-        <th scope="col">HARGA</th>
-        <th scope="col">ACTION</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="obat, iterationStatus : *{obatList}">
-        <th scope="row" th:text="${iterationStatus.count}"></th>
-        <td th:text="${obat.kodeObat}"></td>
-        <td th:text="${obat.namaObat}"></td>
-        <td th:text="${obat.hargaObat}"></td>
-        <td>
-            <a th:href="@{/obat/ubah?id=}+${obat.idObat}" class="btn btn-primary">Ubah</a>
-            <a th:href="@{/obat/view?noReg=}+${obat.nomorRegistrasiObat}" class="btn btn-secondary">Lihat</a>
-            <button class="btn btn-danger" type="submit" name="deleteObat">Hapus</button>
-        </td>
-    </tr>
-    </tbody>
-</table>
-<button class="btn btn-primary">
-    <a th:href="@{/obat/tambah}" style="color: white"> Tambah Obat</a>
-</button>
+<div class="container">
+    <div class="card align-items-center text-center">
+        <div class="card-header" style="background:#ffffff;">
+            <font size="10">Daftar Obat</font>
+        </div>
+    </div>
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">NO</th>
+            <th scope="col">KODE</th>
+            <th scope="col">NAMA</th>
+            <th scope="col">HARGA</th>
+            <th scope="col">ACTION</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="obat, iterationStatus : *{obatList}">
+            <th scope="row" th:text="${iterationStatus.count}"></th>
+            <td th:text="${obat.kodeObat}"></td>
+            <td th:text="${obat.namaObat}"></td>
+            <td th:text="${obat.hargaObat}"></td>
+            <td>
+                <a th:href="@{/obat/ubah?id=}+${obat.idObat}" class="btn btn-primary">Ubah</a>
+                <a th:href="@{/obat/view?noReg=}+${obat.nomorRegistrasiObat}" class="btn btn-secondary">Lihat</a>
+                <button class="btn btn-danger" type="submit" name="deleteObat">Hapus</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <button class="btn btn-primary">
+        <a th:href="@{/obat/tambah}" style="color: white"> Tambah Obat</a>
+    </button>
+</div>
 </body>
 </body>
 </html>

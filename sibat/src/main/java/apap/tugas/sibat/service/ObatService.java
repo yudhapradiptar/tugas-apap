@@ -25,4 +25,6 @@ public interface ObatService {
 
     ObatModel generateKodeObat(ObatModel obat);
 
+
+
 }

@@ -7,51 +7,84 @@
 </head>
 <body>
 <nav th:replace="fragments/fragment :: navbar"></nav>
-<h3> Tambah Obat </h3>
-<form th:action="@{/obat}" th:object="${obat}" method="POST">
-    Nama: <br>
-    <input type="text" name="namaObat"  th:field="*{namaObat}"/>
-    <br>
-    Nomor Registrasi: <br>
-    <input type="text" name="nomorRegistrasiObat" th:field="*{nomorRegistrasiObat}"/>
-    <br>
-    <!--Kode: <br>
-    <input type="text" name="kodeObat" />
-    <br>-->
-    Tanggal Terbit: <br>
-    <input type="date" name="tanggalTerbitObat" th:field="*{tanggalTerbitObat}"/>
-    <br>
-    Harga: <br>
-    <input type="text" name="hargaObat" th:field="*{hargaObat}"/>
-    <br>
-    Bentuk: <br>
-    <select name="bentukObat" th:field="*{bentukObat}">
-        <option th:value="Cairan" th:text="Cairan"></option>
-        <option th:value="Kapsul" th:text="Kapsul"></option>
-        <option th:value="Tablet" th:text="Tablet"></option>
-    </select>
-    <br>
-    Jenis: <br>
-    <select name="jenis">
-        <option th:each="jenis : ${listJenis}"
-                th:value="${jenis.idJenis}"
-                th:text="${jenis.namaJenis}"></option>
-    </select>
-    <br>
-    <div class="form-group">
-        <label>Supplier: </label>
-    <select name="supplierObat" th:each="obatSupplier, iterationStatus : ${obat.listObatSupplier}"
-            th:field="${obat.listObatSupplier[__${iterationStatus.index}__].supplier.idSupplier}" class="form-control" required>
-        <option th:each="supplier : ${listSupplier}"
-                th:value="${supplier.idSupplier}"
-                th:text="${supplier.namaSupplier}"></option>
-    </select>
-        <button name="addRowSupplier" class="btn btn-primary" style="=color: white">Tambah Supplier</button>
+<div class="container">
+    <div class="card">
+        <div class="card-header" style="background:#ffffff;">
+            <font size="10">Tambah Obat</font>
+        </div>
+        <div class="card-body">
+            <form th:action="@{/obat}" th:object="${obat}" method="POST">
+                <div class="form-group-row">
+                    <label class="col-sm-2 col-form-label">Nama: </label>
+                    <div class="col-sm-10">
+                        <input type="text" name="namaObat"  class="form-control" th:field="*{namaObat}"/>
+                    </div>
+                </div>
+                <div class="form-group-row">
+                    <label class="col-sm-2 col-form-label">Nomor Registrasi: </label>
+                    <div class="col-sm-10">
+                        <input type="text" name="nomorRegistrasiObat" th:field="*{nomorRegistrasiObat}" class="form-control"/>
+                    </div>
+                </div>
+                <div class="form-group-row">
+                    <label class="col-sm-2 col-form-label">Tanggal Terbit: </label>
+                    <div class="col-sm-10">
+                        <input type="text" name="tanggalTerbitObat" th:field="*{tanggalTerbitObat}" class="form-control"/>
+                    </div>
+                </div>
+                <div class="form-group-row">
+                    <label class="col-sm-2 col-form-label">Harga: </label>
+                    <div class="col-sm-10">
+                        <input type="text" name="hargaObat" th:field="*{hargaObat}" class="form-control"/>
+                    </div>
+                </div>
+                <div class="form-group-row">
+                    <label class="col-sm-2 col-form-label">Bentuk: </label>
+                    <div class="col-sm-10">
+                        <select class="form-control" name="bentukObat" th:field="*{bentukObat}">
+                            <option th:value="Cairan" th:text="Cairan"></option>
+                            <option th:value="Kapsul" th:text="Kapsul"></option>
+                            <option th:value="Tablet" th:text="Tablet"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group-row">
+                    <label class="col-sm-2 col-form-label">Jenis:</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" name="jenis">
+                            <option th:each="jenis : ${listJenis}"
+                                    th:value="${jenis.idJenis}"
+                                    th:text="${jenis.namaJenis}"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group-row">
+                    <label class="col-sm-2 col-form-label">Supplier: </label>
+                    <div class="col-sm-10">
+                        <select name="supplierObat" th:each="obatSupplier, iterationStatus : ${obat.listObatSupplier}"
+                                th:field="${obat.listObatSupplier[__${iterationStatus.index}__].supplier.idSupplier}" class="form-control" required>
+                            <option th:each="supplier : ${listSupplier}"
+                                    th:value="${supplier.idSupplier}"
+                                    th:text="${supplier.namaSupplier}"></option>
+                        </select>
+                    </div>
+                </div>
+                    <br>
+                    <div class="form-group-row">
+                        <div class="col-sm-10">
+                            <button name="addRowSupplier" class="btn btn-secondary">Tambah Supplier</button>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group-row">
+                        <div class="col-sm-10">
+                            <button class="btn btn-primary" style="color: white" type="submit" name="submit"> Submit </button>
+                        </div>
+                    </div>
+            </form>
+        </div>
     </div>
-    <br>
-    <button type="submit" name="submit"> Submit </button>
-</form>
-<br>
-
+    </div>
+</div>
 </body>
 </html>

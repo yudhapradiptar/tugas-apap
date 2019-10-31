@@ -128,18 +128,23 @@ public class GudangController {
     }
     @RequestMapping(value = "/gudang/tambah", method = RequestMethod.POST)
     public String addGudangSubmit(@ModelAttribute GudangModel gudang, Model model){
-        gudangService.addGudang(gudang);
-        model.addAttribute("namaGudang", gudang.getNamaGudang());
-        return "add-gudang";
+        if(gudang.getNamaGudang().equals("") || gudang.getAlamatGudang().equals("")){
+            return "error-add-gudang";
+        } else {
+            gudangService.addGudang(gudang);
+            model.addAttribute("namaGudang", gudang.getNamaGudang());
+            return "add-gudang";
+        }
     }
     @RequestMapping(value="/gudang/hapus/{idGudang}", method = RequestMethod.GET)
     public String deleteGudang(@PathVariable Long idGudang,GudangModel gudang, Model model){
         String strIdGudang = String.valueOf(idGudang);
         GudangModel gudangDeleted = gudangService.getGudangByIdGudang(idGudang).get();
+        model.addAttribute("namaGudang", gudangDeleted.getNamaGudang());
         boolean isDeleted = gudangService.deleteGudang(gudangDeleted);
         model.addAttribute("idGudang", strIdGudang);
         if(isDeleted==true){
             return "delete-gudang";
-        } else{return "error-delete-restoran";}
+        } else{return "error-delete-gudang";}
     }
 }
