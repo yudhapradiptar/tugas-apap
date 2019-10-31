@@ -166,7 +166,7 @@ public class ObatController {
     }
 
     @RequestMapping(path = "/obat/filter", method = RequestMethod.GET)
-    public String viewGudang(
+    public String filterObat(
             @RequestParam(required = false) Long idGudang,@RequestParam(required = false) Long idSupplier, @RequestParam(required = false) Long idJenis, Model model
     ) {
         List<GudangObatModel> listGudangObat = gudangObatService.findAllGudangObatByIdGudang(idGudang);
