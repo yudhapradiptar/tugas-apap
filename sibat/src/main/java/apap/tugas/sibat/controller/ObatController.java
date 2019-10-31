@@ -284,9 +284,8 @@ public class ObatController {
 
         // Add model restoran ke "resto" untuk dirender
         model.addAttribute("obatList", listObat);
-        model.addAttribute("listSizeSupplier", listSizeSupplier);
         // Return view template
-        return "viewall-obat";
+        return "bonus";
     }
 
 }

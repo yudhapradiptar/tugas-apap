@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import javax.validation.constraints.Null;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
@@ -72,7 +73,9 @@ public class ObatServiceImpl implements ObatService{
         LocalDate date = LocalDate.now();
         String kodeTahunDimasukan = Integer.toString(date.getYear());
         kodeGenerated+=kodeTahunDimasukan;
-        String kodeTahunTerbit = Integer.toString(obat.getTanggalTerbitObat().getYear()+5);
+        String kodeTahunTerbit = Integer.toString(obat.getTanggalTerbitObat().toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate().getYear()+5);
         kodeGenerated+=kodeTahunTerbit;
         String alfabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         Random r = new Random();
